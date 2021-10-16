@@ -1,6 +1,5 @@
-import json
 import time
-from flask import Flask
+from flask import Flask, jsonify
 from firebase_admin import credentials, db, initialize_app
 
 app = Flask(__name__)
@@ -37,8 +36,12 @@ def home_page():
         'Smoke': smoke.get(),
         'Temperature': temperature.get(),
         'timestamp': timestamp}
-    json_dump = json.dumps(data_set)
-    return json_dump
+    return jsonify({"status": 200, "result": data_set})
+
+
+@app.errorhandler(404)
+def invalid_route(e):
+    return jsonify({"status": 404, "result": ""})
 
 
 def main():
