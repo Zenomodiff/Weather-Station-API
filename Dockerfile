@@ -17,5 +17,5 @@ RUN apt-get -y install apt-utils nano wget dialog
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Runs app.py
-ENTRYPOINT [ "python" ]
+ENTRYPOINT [ "python3" ]
 CMD [ "app.py" ]
