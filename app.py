@@ -45,9 +45,9 @@ print("\n")
 
 @app.route('/', methods=['GET'])
 def home_page():
-    data_set = {"Full_Data" : { "Date & Time =": time.asctime(), "Air_Quality =" : Air_Quality, "Altitude =" : Altitude,  "Cng =": cng, 
-                                                 "Humidity =" : Humidity, "Ldr =" : Ldr,  "Lpg =" : Lpg, "Pressure =" : Pressure,
-                                                 "Rain_Value =" : Rain_Value,  "Smoke =": Smoke, "Temperature =" : Temperature}}
+    data_set = {"Full_Data" : { "Date & Time =": time.asctime(), "Air_Quality" : Air_Quality, "Altitude" : Altitude,  "Cng": cng, 
+                                                 "Humidity" : Humidity, "Ldr" : Ldr,  "Lpg" : Lpg, "Pressure" : Pressure,
+                                                 "Rain_Value" : Rain_Value,  "Smoke": Smoke, "Temperature" : Temperature}}
     json_dump = json.dumps(data_set)
 
     return json_dump
