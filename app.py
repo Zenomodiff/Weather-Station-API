@@ -29,7 +29,6 @@ Temperature = db.reference("Temperature").get()
 
 print("Weather Station Data From Firebase With Time Stamp")
 print("---------------------------------------------------")
-print("Date & Time =" , time.asctime())
 print("Air_Quality=" , Air_Quality)
 print( "Altitude =",Altitude)
 print("Cng =",cng)
@@ -40,7 +39,6 @@ print("Pressure =", Pressure)
 print("Rain_Value =", Rain_Value)
 print("Smoke =",Smoke)
 print("Temperature =" ,Temperature)
-print("\n")
 
 
 @app.route('/', methods=['GET'])
