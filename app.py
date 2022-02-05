@@ -4,7 +4,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 from rsa import PrivateKey
 from flask import *
-import json, time
+import json
 import requests
 
 from config import PORT
@@ -45,7 +45,7 @@ print("\n")
 
 @app.route('/', methods=['GET'])
 def home_page():
-    data_set = {"Full_Data" : { "Date & Time =": time.asctime(), "Air_Quality" : Air_Quality, "Altitude" : Altitude,  "Cng": cng, 
+    data_set = {"Full_Data" : {"Air_Quality" : Air_Quality, "Altitude" : Altitude,  "Cng": cng, 
                                                  "Humidity" : Humidity, "Ldr" : Ldr,  "Lpg" : Lpg, "Pressure" : Pressure,
                                                  "Rain_Value" : Rain_Value,  "Smoke": Smoke, "Temperature" : Temperature}}
     json_dump = json.dumps(data_set)
