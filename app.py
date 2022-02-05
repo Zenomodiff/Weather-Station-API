@@ -7,8 +7,11 @@ from flask import *
 import json, time
 import requests
 
+from config import PORT
+
 cred = credentials.Certificate('firebase-sdk.json')
 app = Flask(__name__)
+app.config["DEBUG"] = True
 firebase_admin.initialize_app(cred, {
 
 'databaseURL': 'https://weather-station-1514a-default-rtdb.firebaseio.com/'})
@@ -48,5 +51,7 @@ def home_page():
     json_dump = json.dumps(data_set)
 
     return json_dump
+
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(debug = True, host = '0.0.0.0', port= PORT)
+
