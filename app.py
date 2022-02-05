@@ -17,7 +17,7 @@ firebase_admin.initialize_app(cred, {
 
 @app.route('/', methods=['GET'])
 def home_page():
-data_set = {"Full_Data" : {"Air_Quality" : db.reference("Air_Quality").get(), "Altitude" : db.reference("Altitude").get(),  "Cng": db.reference("Cng").get(), 
+    data_set = {"Full_Data" : {"Air_Quality" : db.reference("Air_Quality").get(), "Altitude" : db.reference("Altitude").get(),  "Cng": db.reference("Cng").get(), 
                                                 "Humidity" : db.reference("Humidity").get(), "Ldr" : db.reference("Ldr").get(),  "Lpg" : db.reference("Lpg").get(), 
                                                 "Pressure" : db.reference("Pressure").get(), "Rain_Value" : db.reference("Rain_Value").get(), 
                                                 "Smoke": db.reference("Smoke").get(),
