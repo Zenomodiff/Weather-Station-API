@@ -1,52 +1,52 @@
-import time
-from flask import Flask, jsonify
-from firebase_admin import credentials, db, initialize_app
+from weakref import ref
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+from rsa import PrivateKey
+from flask import *
+import json, time
+import requests
 
+cred = credentials.Certificate('firebase-sdk.json')
 app = Flask(__name__)
-cred = credentials.Certificate("firebase-sdk.json")
-initialize_app(
-    cred, {
-        "databaseURL":
-        "https://weather-station-91122-default-rtdb.firebaseio.com/"
-    })
+firebase_admin.initialize_app(cred, {
+
+'databaseURL': 'https://weather-station-1514a-default-rtdb.firebaseio.com/'})
+
+Air_Quality = db.reference("Air_Quality").get()
+Altitude = db.reference("Altitude").get()
+cng = db.reference("Cng").get()
+Humidity = db.reference("Humidity").get()
+Ldr = db.reference("Ldr").get()
+Lpg =db.reference("Lpg").get()
+Pressure =db.reference("Pressure").get()
+Rain_Value =db.reference("Rain_Value").get()
+Smoke = db.reference("Smoke").get()
+Temperature = db.reference("Temperature").get()
+
+print("Weather Station Data From Firebase With Time Stamp")
+print("---------------------------------------------------")
+print("Date & Time =" , time.asctime())
+print("Air_Quality=" , Air_Quality)
+print( "Altitude =",Altitude)
+print("Cng =",cng)
+print("Humidity =", Humidity)
+print("Ldr =", Ldr)
+print("Lpg =", Lpg)
+print("Pressure =", Pressure)
+print("Rain_Value =", Rain_Value)
+print("Smoke =",Smoke)
+print("Temperature =" ,Temperature)
+print("\n")
 
 
 @app.route('/', methods=['GET'])
 def home_page():
-    air_quality = db.reference("Air_Quality")
-    altitude = db.reference("Altitude")
-    cng = db.reference("Cng")
-    humidity = db.reference("Humidity")
-    ldr = db.reference("Ldr")
-    lpg = db.reference("Lpg")
-    pressure = db.reference("Pressure")
-    rain_value = db.reference("Rain_Value")
-    smoke = db.reference("Smoke")
-    temperature = db.reference("Temperature")
-    timestamp = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
-    data_set = {
-        'Air_Quality': air_quality.get(),
-        'Altitude': altitude.get(),
-        'Cng': cng.get(),
-        'Humidity': humidity.get(),
-        'Ldr': ldr.get(),
-        'Lpg': lpg.get(),
-        'Pressure': pressure.get(),
-        'Rain_Value': rain_value.get(),
-        'Smoke': smoke.get(),
-        'Temperature': temperature.get(),
-        'timestamp': timestamp}
-    return jsonify({"status": 200, "result": data_set})
+    data_set = {"Date & Time =": time.asctime(), "Air_Quality =" : Air_Quality, "Altitude =" : Altitude,  "Cng =": cng, 
+                                                 "Humidity =" : Humidity, "Ldr =" : Ldr,  "Lpg =" : Lpg, "Pressure =" : Pressure,
+                                                 "Rain_Value =" : Rain_Value,  "Smoke =": Smoke, "Temperature =" : Temperature}
+    json_dump = json.dumps(data_set)
 
-
-@app.errorhandler(404)
-def invalid_route(e):
-    return jsonify({"status": 404, "result": ""})
-
-
-def main():
-    app.run(debug=True, host='0.0.0.0')
-
-
+    return json_dump
 if __name__ == '__main__':
-    main()
+    app.run(port=5000)
