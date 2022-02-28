@@ -2,5 +2,5 @@
 
 ### [API LINK](https://apiforweatherstation.herokuapp.com/)
 
-![image](https://user-images.githubusercontent.com/25906435/152654667-2cca5b84-9792-4241-85e6-b6db297531dd.png)
 
+![Screenshot 2022-02-28 114509](https://user-images.githubusercontent.com/25906435/155933633-3c38d129-7556-4a64-988c-f551e220c649.png)
